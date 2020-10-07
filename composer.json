@@ -1,5 +1,5 @@
 {
-    "name": "getvero/vero-php",
+    "name": "esto-as/vero-php",
     "description": "Library for tracking users and event with Vero's communications platform",
     "require": {
         "php": ">=5.3.0"
