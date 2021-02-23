@@ -37,7 +37,7 @@ class Client
         $request_data = [
             'auth_token' => $this->auth_token,
             'id'         => $user_id,
-            'data'       => ($data == [] ? NULL : $data)
+            'data'       => ($data == [] ? NULL : $data),
         ];
 
         if ($email)
@@ -58,7 +58,7 @@ class Client
         $request_data = array(
             'auth_token' => $this->auth_token,
             'id'         => $user_id,
-            'new_id'     => $new_user_id
+            'new_id'     => $new_user_id,
         );
 
         return $this->_send($endpoint, $request_data, 'put');
@@ -76,7 +76,8 @@ class Client
         $request_data = [
             'auth_token' => $this->auth_token,
             'id'         => $user_id,
-            'changes'    => $changes
+            'changes'    => $changes,
+            'channels'   => $changes['channels'] ?? NULL,
         ];
 
         return $this->_send($endpoint, $request_data, 'put');
@@ -96,7 +97,7 @@ class Client
             'auth_token' => $this->auth_token,
             'id'         => $user_id,
             'add'        => $add,
-            'remove'     => $remove
+            'remove'     => $remove,
         ];
 
         return $this->_send($endpoint, $request_data, 'put');
@@ -113,8 +114,8 @@ class Client
         $endpoint = "https://api.getvero.com/api/v2/users/unsubscribe.json";
         $request_data = [
             'auth_token' => $this->auth_token,
-            'id' => $user_id,
-            'email' => $email
+            'id'         => $user_id,
+            'email'      => $email,
         ];
 
         return $this->_send($endpoint, $request_data);
@@ -132,7 +133,7 @@ class Client
         $request_data = [
             'auth_token' => $this->auth_token,
             'id'         => $user_id,
-            'email'      => $email
+            'email'      => $email,
         ];
 
         return $this->_send($endpoint, $request_data);
@@ -142,7 +143,7 @@ class Client
      * @param  $event_name
      * @param  $identity
      * @param  $data
-     * @param  array $extras
+     * @param array $extras
      *
      * @return bool|string
      */
@@ -151,19 +152,19 @@ class Client
         $endpoint = "https://api.getvero.com/api/v2/events/track.json";
         $request_data = [
             'auth_token' => $this->auth_token,
-            'identity' => $identity,
+            'identity'   => $identity,
             'event_name' => $event_name,
-            'data' => ($data == [] ? NULL : $data),
-            'extras' => ($extras == [] ? NULL : $extras)
+            'data'       => ($data == [] ? NULL : $data),
+            'extras'     => ($extras == [] ? NULL : $extras),
         ];
 
         return $this->_send($endpoint, $request_data);
     }
 
     /**
-     * @param  string $endpoint
-     * @param  array  $request_data
-     * @param  string $request_type
+     * @param string $endpoint
+     * @param array $request_data
+     * @param string $request_type
      *
      * @return bool|string
      */
